@@ -3,19 +3,13 @@
 
 ## Iteration 0: Initial Setup
 
-Run this repo as a Github Codespace:
+- Fork
+- Clone
+- Open with VS Code
+- Run with `npm run dev`
 
-![How to open as a Github Codespace](screenshots/image.png)
+Note: if you're already running an app on port 3000, change the variable `PORT` (at the beginning of `app.js`) and run again with `npm run dev`.
 
-
-Github will open a codespace for you and it will automatically run the app with `npm start`.
-
-If all goes well, in the terminal you should see this message:
-
-> Connected! Database Name: "ih-exercise-mongoose-methods""
-
-
-![App running successfully](screenshots/image-1.png)
 
 
 ## Iteration 1: Implement an endpoint to get a list of pizzas from the DB
@@ -30,21 +24,37 @@ If all goes well, in the terminal you should see this message:
     .catch()
   ```
 
-## Iteration 2: test your route ;) 
-
-To test your route:
-- Go to the browser preview
-- Add "/pizzas" at the end of the URL
-- Hit "enter"
-
-![Browser preview](screenshots/image-2.png)
+- Test your route:
+    - You will need to send a GET request to "/pizzas"
 
 
-In case you have closed the browser preview, you can do the following:
-- Open the terminal and kill the process with Ctrl + C
-- Run the app again with "npm start"
-- Github will then open the browser preview
 
-... if that doesn't work, you can also open the "Ports" tab and click on the icon "Open in Browser"
+## Iteration 2: Implement an endpoint to get one pizza from the DB
 
-![ports](screenshots/image-3.png)
+- In app.js, create a new route `GET /pizzas/:pizzaId`
+
+- Inside this route,
+    - Get the pizza id from `req.params`
+    - To get a document from the DB, use the mongoose method "findById()". Example:
+
+        ```js
+        Pizza.findById()
+            .then()
+            .catch()
+        ```
+
+- Test your route:
+    - You will need to send a GET request to "/pizzas/abc" (where `abc` is a valid id)
+    - Note: to get a valid id, you can use the endpoint you created in the previous iteration (ie. when you get a list of pizzas, you'll be able to see their id's)
+
+
+
+## Bonus: filter pizzas by max price
+
+Modify the route `GET /pizzas`, so that it allows you to filter pizzas by max price.
+
+Examples:
+- `http://localhost:3000/pizzas` should return an array with all the pizzas in our DB.
+- `http://localhost:3000/pizzas?max_price=12` should return an array with all pizzas with a max price of 12.
+- `http://localhost:3000/pizzas?max_price=15` should return an array with all pizzas with a max price of 15.
+
