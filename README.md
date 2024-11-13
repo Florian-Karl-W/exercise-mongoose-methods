@@ -1,13 +1,50 @@
-# GitHub Codespaces ♥️ Express
+# Practice: Mongoose Methods
 
-Welcome to your shiny new Codespace running Express! We've got everything fired up and running for you to explore Express.
 
-You've got a blank canvas to work on from a git perspective as well. There's a single initial commit with the what you're seeing right now - where you go from here is up to you!
+## Iteration 0: Initial Setup
 
-Everything you do here is contained within this one codespace. There is no repository on GitHub yet. If and when you’re ready you can click "Publish Branch" and we’ll create your repository and push up your project. If you were just exploring then and have no further need for this code then you can simply delete your codespace and it's gone forever.
+Run this repo as a Github Codespace:
 
-To run this application:
+![How to open as a Github Codespace](screenshots/image.png)
 
-```
-npm start
-```
+
+Github will open a codespace for you and it will automatically run the app with `npm start`.
+
+If all goes well, in the terminal you should see this message:
+
+> Connected! Database Name: "ih-exercise-mongoose-methods""
+
+
+![App running successfully](screenshots/image-1.png)
+
+
+## Iteration 1: Implement an endpoint to get a list of pizzas from the DB
+
+- In app.js, create a new route `GET /pizzas`
+
+- Inside this route, you can use the mongoose method "find()". Example:
+
+  ```js
+  Pizza.find()
+    .then()
+    .catch()
+  ```
+
+## Iteration 2: test your route ;) 
+
+To test your route:
+- Go to the browser preview
+- Add "/pizzas" at the end of the URL
+- Hit "enter"
+
+![Browser preview](screenshots/image-2.png)
+
+
+In case you have closed the browser preview, you can do the following:
+- Open the terminal and kill the process with Ctrl + C
+- Run the app again with "npm start"
+- Github will then open the browser preview
+
+... if that doesn't work, you can also open the "Ports" tab and click on the icon "Open in Browser"
+
+![ports](screenshots/image-3.png)
