@@ -42,9 +42,18 @@ app.get('/', (req, res, next) => {
 });
 
 
-//
-// Endpoint to create new pizzas (POST "/pizzas")
-//
+app.get('/pizzas', (req,res, next) => {
+  Pizza.find()
+  .then((pizzasFromDB)=>{
+    res.status(200).json(pizzasFromDB)
+  })
+  .catch((error) => {
+    console.log(" Couldnt get the pizza from Db Oven ", error);
+    res.status(500).json({error: 'Failed to get pizzas'})
+  })
+})
+
+
 app.post('/pizzas', (req, res, next) => {
   const newPizza = req.body;
 
@@ -55,6 +64,22 @@ app.post('/pizzas', (req, res, next) => {
     .catch((error) => {
       console.log("\n\n Error creating a new pizza in the DB...\n", error);
       res.status(500).json({ error: 'Failed to create a new pizza' });
+    });
+});
+
+app.get('/pizzas/:pizzaId', (req, res, next) => {
+  const { pizzaId } = req.params;
+
+  Pizza.findById(pizzaId)
+    .then((pizzaFromDB) => {
+      if (!pizzaFromDB) {
+        return res.status(404).json({ error: 'Pizza not found' });
+      }
+      res.status(200).json(pizzaFromDB);
+    })
+    .catch((error) => {
+      console.log("Error fetching the pizza from the DB oven", error);
+      res.status(500).json({ error: 'Failed to get pizza' });
     });
 });
 
