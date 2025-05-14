@@ -7,6 +7,7 @@
 - Fork
 - Clone
 - Open with VS Code
+- Install dependencies with `npm install`
 - Run with `npm run dev`
 
 Note: if you're already running an app on port 3000, change the variable `PORT` (at the beginning of `app.js`) and run again with `npm run dev`.
